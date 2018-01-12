@@ -39,7 +39,8 @@ CREATE TABLE Viagem(
     saida integer,
     chegada integer,
     
-    dataHorario timestamp,
+    data date,
+    horario time,
     valor numeric(7,2),
     vagas smallint,
     
