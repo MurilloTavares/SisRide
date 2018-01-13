@@ -1,6 +1,6 @@
 CREATE TABLE Usuario(
     email varchar(50) ,
-    senha varchar(50) NOT NULL,
+    senha varchar(250) NOT NULL,
     nome varchar(50) NOT NULL,
     foto varchar(50) NOT NULL,
     
@@ -11,8 +11,6 @@ CREATE TABLE Usuario(
     nota numeric(3,2),
 
     CONSTRAINT Usuario_PK PRIMARY KEY(email),
-    
-    CONSTRAINT Usuario_Foto_UNIQUE UNIQUE(foto)
 
 );
 
