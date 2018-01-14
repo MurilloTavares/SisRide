@@ -1,9 +1,15 @@
 package modelo;
 
+import controle.LugarDAO;
+import controle.UsuarioDAO;
+import java.sql.Date;
+import java.sql.SQLException;
 import java.sql.Time;
-import java.util.Date;
 
 public class Viagem {
+    LugarDAO lDAO = new LugarDAO();
+    UsuarioDAO uDAO = new UsuarioDAO();
+    
     private int id;
     private Usuario motorista;
     
@@ -18,27 +24,15 @@ public class Viagem {
     private String descCarro;
     private String descViagem;
 
-    public Viagem(Usuario motorista, Lugar saida, Lugar chegada) {
-        this.motorista = motorista;
-        this.saida = saida;
-        this.chegada = chegada;
+    public Viagem(int id, String motoristaEmail, int saidaID, int chegadaID) throws SQLException {
+        this(id, motoristaEmail, saidaID, chegadaID, null, null, 0f, 0, null, null);        
     }
 
-    public Viagem(Usuario motorista, Lugar saida, Lugar chegada, Date data, Time horario, Float valor, int vagas) {
-        this.motorista = motorista;
-        this.saida = saida;
-        this.chegada = chegada;
-        this.data = data;
-        this.horario = horario;
-        this.valor = valor;
-        this.vagas = vagas;
-    }
-
-    public Viagem(int id, Usuario motorista, Lugar saida, Lugar chegada, Date data, Time horario, Float valor, int vagas, String descCarro, String descViagem) {
+    public Viagem(int id, String motoristaEmail, int saidaID, int chegadaID, Date data, Time horario, Float valor, int vagas, String descCarro, String descViagem) throws SQLException {
         this.id = id;
-        this.motorista = motorista;
-        this.saida = saida;
-        this.chegada = chegada;
+        this.motorista = uDAO.read(motoristaEmail);
+        this.saida = lDAO.read(saidaID);
+        this.chegada = lDAO.read(chegadaID);
         this.data = data;
         this.horario = horario;
         this.valor = valor;
@@ -125,6 +119,11 @@ public class Viagem {
 
     public void setDescViagem(String descViagem) {
         this.descViagem = descViagem;
-    }    
-    
+    }
+
+    @Override
+    public String toString() {
+        return "Viagem{" + "id=" + id + ", motorista=" + motorista + ", saida=" + saida + ", chegada=" + chegada + ", data=" + data + ", horario=" + horario + ", valor=" + valor + ", vagas=" + vagas + ", descCarro=" + descCarro + ", descViagem=" + descViagem + '}';
+    }
+        
 }

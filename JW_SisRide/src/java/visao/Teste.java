@@ -4,12 +4,14 @@ import controle.Conexao;
 import controle.EncodeDecode;
 import controle.LugarDAO;
 import controle.UsuarioDAO;
+import controle.ViagemDAO;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.Lugar;
 import modelo.Usuario;
+import modelo.Viagem;
 
 public class Teste {
 
@@ -34,26 +36,50 @@ public class Teste {
 //            Logger.getLogger(Teste.class.getName()).log(Level.SEVERE, null, ex);
 //        }
         
-        LugarDAO lDao = new LugarDAO();
-                
-        try {
-            Lugar lugarA = new Lugar(-1, "estado","cidade2","ruas2",1);
+//        LugarDAO lDao = new LugarDAO();
+//                
+//        try {
+//            Lugar lugarA = new Lugar(-1, "estado","cidade2","ruas2",1);
 //            Lugar lugarB = new Lugar(2,"estadoB","cidadeB","ruaB",2);
 //            Lugar lugarC = new Lugar(3,"estadoC","cidadeC","ruaC",3);
 //            Lugar lugarD = new Lugar(4,"estadoD","cidadeD","ruaD",4);
-            System.out.println(lugarA);
-            lDao.add(lugarA);
-            System.out.println(lugarA);
+//            System.out.println(lugarA);
+//            lDao.add(lugarA);
+//            System.out.println(lugarA);
 //            lDao.add(lugarB);
 //            lDao.update(lugarA, lugarC);
 //            lDao.add(lugarD);
 //            String sLugarD = lDao.read(lugarD.getId()).toString();
 //            lDao.delete(lugarD);
 //            System.out.println(sLugarD); 
+//            
+//        } catch (SQLException ex) {
+//            Logger.getLogger(Teste.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+        
+        UsuarioDAO uDAO = new UsuarioDAO();
+        LugarDAO lDAO= new LugarDAO();
+        ViagemDAO vDAO = new ViagemDAO();
+        
+        Usuario joao = new Usuario("emailJoao","senhaJoao","Joao Alves");
+        Lugar saida = new Lugar(-1,"paraiba","cajazeiras", "rua dos trouxas", 0);
+        Lugar chegada = new Lugar(-1,"Tokyo", "konoha", "praça da liberdade", 666);
+        Viagem novaViagem = null;
+        
+        try {
+            uDAO.add(joao);
+            lDAO.add(saida);
+            lDAO.add(chegada);
+            Viagem viagem = new Viagem(-1,joao.getEmail(),saida.getId(),chegada.getId());
+            vDAO.add(viagem);
+            novaViagem = vDAO.read(viagem.getId());
+            System.out.println("novaViagem: " + novaViagem);
             
         } catch (SQLException ex) {
             Logger.getLogger(Teste.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
+
+
     }
 }
