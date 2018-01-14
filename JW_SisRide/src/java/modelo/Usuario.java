@@ -19,25 +19,11 @@ public class Usuario {
     private Float nota;
 
     public Usuario(String email, String senha, String nome) {
-        this.email = email;
-        this.senha = senha;
-        this.nome = nome;
-                
-        foto = new ImageIcon("/imgPerfil/default.png");
-        nota = 0f;
+        this(email, senha, nome, new ImageIcon("/imgPerfil/default.png"), null, null, null, null, 0f);
     }
 
     public Usuario(String email, String senha, String nome, String cidade, Date nascimento, String profissao, String sexo) {
-        this.email = email;
-        this.senha = senha;
-        this.nome = nome;
-        this.cidade = cidade;
-        this.nascimento = nascimento;
-        this.profissao = profissao;
-        this.sexo = sexo;
-        
-        foto = new ImageIcon("/imgPerfil/default.png");
-        nota = 0f;
+        this(email, senha, nome, new ImageIcon("/imgPerfil/default.png"), cidade, nascimento, profissao, sexo, 0f);
     }
 
     public Usuario(String email, String senha, String nome, ImageIcon foto, String cidade, Date nascimento, String profissao, String sexo, Float nota) {

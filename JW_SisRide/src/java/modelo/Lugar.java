@@ -14,11 +14,7 @@ public class Lugar {
     private String descricao;
 
     public Lugar(int id, String estado, String cidade, String rua, int numero) {
-        this.id = id;
-        this.estado = estado;
-        this.cidade = cidade;
-        this.rua = rua;
-        this.numero = numero;
+        this(id, estado, cidade, rua, numero, null, null);
     }
 
     public Lugar(int id, String estado, String cidade, String rua, int numero, String nome, String descricao) {
