@@ -10,17 +10,17 @@ CREATE TABLE Usuario(
     sexo char(1),
     nota numeric(3,2),
 
-    CONSTRAINT Usuario_PK PRIMARY KEY(email),
+    CONSTRAINT Usuario_PK PRIMARY KEY(email)
 
 );
 
 CREATE TABLE Lugar(
-    id serial,
+    id int,
     
-    estado varchar(30),
-    cidade varchar(50),
-    rua varchar(50),
-    numero varchar(8),    
+    estado varchar(30) NOT NULL,
+    cidade varchar(50) NOT NULL,
+    rua varchar(50) NOT NULL,
+    numero int NOT NULL,    
     
     nome varchar(50),
     descricao varchar(250),
@@ -55,8 +55,7 @@ CREATE TABLE Viagem(
         ON DELETE RESTRICT ON UPDATE RESTRICT,
 
     CONSTRAINT Viagem_SaidaChegada CHECK(saida!=chegada),
-    CONSTRAINT Viagem_NumVagas CHECK(Vagas>0),
-    CONSTRAINT Viagem_DataHorario CHECK(dataHorario>now())
+    CONSTRAINT Viagem_NumVagas CHECK(Vagas>0)
 );
 
 CREATE TABLE Passageiros(

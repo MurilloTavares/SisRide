@@ -75,8 +75,8 @@ public class Conexao {
             System.out.println("Erro na consulta");
             return null;
         }
-    }
-    
+    }    
+        
     public Connection getConn() {
         return conn;
     }

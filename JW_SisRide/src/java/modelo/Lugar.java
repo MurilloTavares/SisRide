@@ -1,24 +1,28 @@
 package modelo;
 
 public class Lugar {
+    
+    //id = -1 para gerar um id automatico
     private int id;
     
     private String estado;
     private String cidade;
     private String rua;
-    private String numero;
+    private int numero;
     
     private String nome;
     private String descricao;
 
-    public Lugar(String estado, String cidade, String rua, String numero) {
+    public Lugar(int id, String estado, String cidade, String rua, int numero) {
+        this.id = id;
         this.estado = estado;
         this.cidade = cidade;
         this.rua = rua;
         this.numero = numero;
     }
 
-    public Lugar(String estado, String cidade, String rua, String numero, String nome, String descricao) {
+    public Lugar(int id, String estado, String cidade, String rua, int numero, String nome, String descricao) {
+        this.id = id;        
         this.estado = estado;
         this.cidade = cidade;
         this.rua = rua;
@@ -26,7 +30,7 @@ public class Lugar {
         this.nome = nome;
         this.descricao = descricao;
     }
-
+        
     public int getId() {
         return id;
     }
@@ -43,7 +47,7 @@ public class Lugar {
         return rua;
     }
 
-    public String getNumero() {
+    public int getNumero() {
         return numero;
     }
 
@@ -57,8 +61,8 @@ public class Lugar {
 
     public void setId(int id) {
         this.id = id;
-    }
-
+    }    
+    
     public void setEstado(String estado) {
         this.estado = estado;
     }
@@ -71,7 +75,7 @@ public class Lugar {
         this.rua = rua;
     }
 
-    public void setNumero(String numero) {
+    public void setNumero(int numero) {
         this.numero = numero;
     }
 
@@ -82,5 +86,12 @@ public class Lugar {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
+
+    @Override
+    public String toString() {
+        return "Lugar{" + "id=" + id + ", estado=" + estado + ", cidade=" + cidade + ", rua=" + rua + ", numero=" + numero + ", nome=" + nome + ", descricao=" + descricao + '}';
+    }
+    
+    
     
 }
