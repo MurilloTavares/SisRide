@@ -67,13 +67,14 @@ public class Teste {
         Viagem novaViagem = null;
         
         try {
-            uDAO.add(joao);
-            lDAO.add(saida);
-            lDAO.add(chegada);
-            Viagem viagem = new Viagem(-1,joao.getEmail(),saida.getId(),chegada.getId());
-            vDAO.add(viagem);
-            novaViagem = vDAO.read(viagem.getId());
-            System.out.println("novaViagem: " + novaViagem);
+//            uDAO.add(joao);
+//            lDAO.add(saida);
+//            lDAO.add(chegada);
+//            Viagem viagem = new Viagem(-1,joao.getEmail(),saida.getId(),chegada.getId());
+//            vDAO.add(viagem);
+//            novaViagem = vDAO.read(viagem.getId());
+//            System.out.println("novaViagem: " + novaViagem);
+            System.out.println(uDAO.autentica("emailJoao", "senhaJoao"));
             
         } catch (SQLException ex) {
             Logger.getLogger(Teste.class.getName()).log(Level.SEVERE, null, ex);

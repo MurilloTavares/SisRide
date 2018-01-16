@@ -21,7 +21,6 @@ public class UsuarioDAO implements DAOIF<Usuario>{
     }
 
     private PreparedStatement setUsuario(Usuario u, PreparedStatement stat) throws SQLException {
-        try {            
             stat.setString(1, u.getEmail());
             stat.setString(2, u.getSenhaEncoded());
             stat.setString(3, u.getNome());
@@ -33,10 +32,6 @@ public class UsuarioDAO implements DAOIF<Usuario>{
             stat.setFloat (9, u.getNota());
             
             return stat;
-            
-        } catch (SQLException ex) {
-            throw new SQLException(ex);
-        }
     }
     
     
@@ -50,8 +45,6 @@ public class UsuarioDAO implements DAOIF<Usuario>{
         try {
             setUsuario(u, stat);
             stat.executeUpdate();
-        } catch (SQLException ex) {
-            throw new SQLException(ex);
         } finally {
             stat.close();
         }
@@ -68,8 +61,6 @@ public class UsuarioDAO implements DAOIF<Usuario>{
             setUsuario(novo, stat);
             stat.setString(10, u.getEmail());
             stat.executeUpdate();
-        } catch (SQLException ex) {
-            throw new SQLException(ex);
         } finally {
             stat.close();
         }
@@ -85,23 +76,14 @@ public class UsuarioDAO implements DAOIF<Usuario>{
             stat.setString(2, u.getSenhaEncoded());
             stat.executeUpdate();
             stat.close();
-        } catch (SQLException ex) {
-            throw new SQLException(ex);
         } finally {
             stat.close();
         }
     }
 
-    public Usuario read(String email) throws SQLException {
+    private Usuario getUsuario(ResultSet rs) throws SQLException{
         Usuario u = null;
-        
-        String sql = "SELECT * FROM Usuario WHERE email = ?";
-        PreparedStatement stat = connection.prepareStatement(sql);
-        
-        try {
-            stat.setString(1, email);            
-            ResultSet rs = stat.executeQuery();            
-            if(rs.next()){
+        if(rs.next()){
                 u = new Usuario(
                         rs.getString("email"),
                         EncodeDecode.decode(rs.getString("senha")),
@@ -113,14 +95,36 @@ public class UsuarioDAO implements DAOIF<Usuario>{
                         rs.getString("sexo"),
                         rs.getFloat ("nota"));
             }
-        } catch (SQLException ex) {
-            throw new SQLException(ex);
+        return u;
+    }
+    
+    public Usuario read(String email) throws SQLException {      
+        String sql = "SELECT * FROM Usuario WHERE email = ?";
+        PreparedStatement stat = connection.prepareStatement(sql);
+        
+        try {
+            stat.setString(1, email);            
+            ResultSet rs = stat.executeQuery();            
+            return getUsuario(rs);
+            
         } finally {
             stat.close();
-            return u;
         }
     }
     
-    
+    public Usuario autentica(String email, String senha) throws SQLException{        
+        String sql = "SELECT * FROM Usuario WHERE email = ? and senha = ?";
+        PreparedStatement stat = connection.prepareStatement(sql);
+        
+        try{
+            stat.setString(1, email);
+            stat.setString(2, EncodeDecode.encode(senha));
+            ResultSet rs = stat.executeQuery();
+            return getUsuario(rs);
+        } finally {
+            stat.close();
+        }
+        
+    }
     
 }
