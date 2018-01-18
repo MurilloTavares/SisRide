@@ -1,0 +1,78 @@
+body {
+    background: #3B3938;     
+}
+.logo-header img{
+    width: 360px;
+    margin: 0 0 15px;
+}
+.login-page {
+    width: 360px;
+    padding: 2% 0 0;
+    margin: auto;
+}
+.form {
+    position: relative;
+    z-index: 1;
+    background: #FFFFFF;
+    max-width: 360px;
+    padding: 45px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+.form input {
+    outline: 0;
+    background: #EEEEEE;
+    width: 100%;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+.form input[type=radio]{
+    color: #b3b3b3;
+    width: 20%;
+}
+p {
+    color: #6E6E6E;
+    margin: 0;
+}
+p.radioP{
+    display: inline;    
+}
+.obrigatorio:after{
+    content:" *"; 
+    color: #F79633;
+}
+#mensagemCampo{
+    text-align: right;
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+.form button {
+    text-transform: uppercase;
+    outline: 0;
+    background: #F79633;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    -webkit-transition: all 0.3 ease;
+    cursor: pointer;
+}
+.form button:hover,.form button:active,.form button:focus {
+    background: #F58634;
+}
+.form .mensagem {
+    margin: 10px 0 0;
+    text-align: center;
+    color: #b3b3b3;
+    font-size: 12px;
+}
+.form .mensagem a {
+    color: #F79633;
+    text-decoration: none;
+}
+.form #cadastro-form {
+    display: none;
+}
